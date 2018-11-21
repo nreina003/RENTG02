@@ -13,29 +13,79 @@ and open the template in the editor.
         <script src="js/registrarse.js"></script>
     </head>
     <body>
-        <form action="loguearse.html" method="post">
-            <p><label>Nombre: <input type="text"  name="nombre" pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{3,48}" required=""/></label></p>
-            <p><label>DNI: <input type="text" name="dni" maxlength="9" pattern="[0-9]{9}" /></label></p>
-            <p><label>Movil: <input type="text" name="movil" ></label></p>
-            <p><label>Correo: <input type="email" name="correo" required=""></label></p>
-            <p><label>Contraseña: <input type="password" name="contraseña" value="" maxlength="10" size="10" required="" /></p>
 
-            <!--  FOTOOOOOOOOOOOOOOO -->
+        <header id="cabeceralogo">
+            <div>
+                <h1>RENTG02</h1>
+            </div>
+        </header>
+        <nav id="menuprincipal">
+            <div>
+                <ul>
+                    <li><a href="loguearse.html">Loguearse</a></li>
+                    <li><a href="modelchoice.html">Model Choice</a></li>
+                    <li><a href="contacto.html">Contacto</a></li>
+                </ul>
+            </div>
+        </nav>
 
-            <section id="cajaformulario">
-                <form name="formulario">
-                    <label for="archivos">Archivo: </label>
-                    <input type="file" name="archivos" id="archivos">
-                </form>
-            </section>
-            <section id="cajadatos">
-                <p>Seleccione un archivo</p>
-            </section>
+        <main>
+            <div>
+                <section id="articulosprincipales">
 
 
 
-            <p><input type="submit" name="btnSubmit" value="Enviar Datos"/>
-                <input type="reset" value="Limpiar Datos"/></p>
-        </form>
+                    <!--  FOTOOOOOOOOOOOOOOO -->
+
+                    <section id="cajaformulario">
+                        <form name="formulario" action="loguearse.html" method="post">
+                            <p><label>Nombre: <input type="text"  name="nombre" pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{3,48}" required=""/></label></p>
+                            <p><label>DNI: <input type="text" name="dni" maxlength="9" pattern="[0-9]{9}" /></label></p>
+                            <p><label>Movil: <input type="text" name="movil" ></label></p>
+                            <p><label>Correo: <input type="email" name="correo" required=""></label></p>
+                            <p><label>Contraseña: <input type="password" name="contraseña" value="" maxlength="10" size="10" required="" /></p>
+                            <label for="archivos">Archivo: </label>
+                            <input type="file" name="archivos" id="archivos">
+
+
+
+                            <section id="cajadatos">
+                                <p>Seleccione un archivo</p>
+                            </section>
+
+                            <p><input type="submit" name="btnSubmit" value="Enviar Datos"/>
+                                <input type="reset" value="Limpiar Datos"/></p>
+                        </form>
+                    </section>
+
+                </section>
+                <aside id="infoadicional">
+                    <h1>Nuestras oficinas</h1>
+                    <p>Vitoria</p>
+                    <p>Donostia</p>
+                    <p>Bilbo</p>
+                </aside>
+                <div class="recuperar"></div>
+            </div>
+        </main>
+        <footer id="pielogo">
+            <div>
+                <section class="seccionpie">
+                    <h1>Sitio Web</h1>
+                    <p><a href="index.html">Principal</a></p>
+                    <p><a href="fotos.html">Fotos</a></p>
+                    <p><a href="videos.html">Videos</a></p>
+                </section>
+                <section class="seccionpie">
+                    <h1>Ayuda</h1>
+                    <p><a href="contacto.html">Contacto</a></p>
+                </section>
+                <section class="seccionpie">
+                    <address>Vitoria, País Vasco</address>
+                    <small>&copy; Derechos Reservados 2018</small>
+                </section>
+                <div class="recuperar"></div>
+            </div>
+        </footer>
     </body>
 </html>

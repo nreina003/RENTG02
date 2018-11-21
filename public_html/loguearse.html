@@ -13,13 +13,66 @@ and open the template in the editor.
         <link rel="stylesheet" href="css/loguearse.css">
     </head>
     <body>
-        <form action="inicioCliente.html" method="post">
-            <p>Email:<input type="email" name="miemail" id="miemail" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required="" />
-            <p>Contraseña:<input type="password" name="micontrasena" id="micontrasena" maxlength="10" size="10" required="" />
-                <input type="submit" value="Submit">
-                <input type="reset" value="Reset">
-                <a href="registrarse.html">Registrarse</a>
-        </form>
-       
+        <header id="cabeceralogo">
+            <div>
+                <h1>RENTG02</h1>
+            </div>
+        </header>
+        <nav id="menuprincipal">
+            <div>
+                <ul>
+                    <li><a href="registrarse.html">Registrarse</a></li>
+                    <li><a href="modelchoice.html">Model Choice</a></li>
+                    <li><a href="contacto.html">Contacto</a></li>
+                </ul>
+            </div>
+        </nav>
+        <main>
+            <div>
+                <section id="articulosprincipales">
+                    
+                    <!-- mirar prque en el from no admite post arreglarlo -->
+                    <form action="inicioCliente.html" method="get">
+                        <p>Email:<input type="email" name="miemail" id="miemail" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required="" />
+                        <p>Contraseña:<input type="password" name="micontrasena" id="micontrasena" maxlength="10" size="10" required="" />
+                            <input type="submit" value="Submit">
+                            <input type="reset" value="Reset">
+                            <a href="registrarse.html">Registrarse</a>
+                    </form>
+
+                </section>
+                <aside id="infoadicional">
+                    <h1>Nuestras oficinas</h1>
+                    <p>Vitoria</p>
+                    <p>Donostia</p>
+                    <p>Bilbo</p>
+                </aside>
+                <div class="recuperar"></div>
+            </div>
+        </main>
+        <footer id="pielogo">
+            <div>
+                <section class="seccionpie">
+                    <h1>Sitio Web</h1>
+                    <p><a href="index.html">Principal</a></p>
+                    <p><a href="fotos.html">Fotos</a></p>
+                    <p><a href="videos.html">Videos</a></p>
+                </section>
+                <section class="seccionpie">
+                    <h1>Ayuda</h1>
+                    <p><a href="contacto.html">Contacto</a></p>
+                </section>
+                <section class="seccionpie">
+                    <address>Vitoria, País Vasco</address>
+                    <small>&copy; Derechos Reservados 2018</small>
+                </section>
+                <div class="recuperar"></div>
+            </div>
+        </footer>
+
+
+
+
+
     </body>
 </html>
