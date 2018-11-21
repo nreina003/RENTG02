@@ -6,9 +6,10 @@ and open the template in the editor.
 -->
 <html>
     <head>
-        <title>TODO supply a title</title>
+        <title>Realizar reserva</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="css/modelchoice.css">
     </head>
     <body>
         <h1>¿Qué es el servicio de “Model Choice” de RentG02?</h1>
@@ -16,13 +17,48 @@ and open the template in the editor.
         <p>El servicio Model Choice le permite solicitar marcas y modelos 
             específicos de nuestros vehículos disponibles en nuestras oficinas.
             Evite sorpresas indeseadas y certifique que su viaje empieza bien, 
-            conduciendo el modelo que ha reservado. </p>
+            conduciendo el modelo que ha reservado. 
+        </p>
 
         <h2>Nuestros vehículos Model Choice</h2>
         <span></span>
-        <input type="radio" name="Modelo" value="audi" />
-        <input type="radio" name="Modelo" value="ford" />
-        <input type="radio" name="Modelo" value="bmv" />
-        <input type="radio" name="Modelo" value="pink" />
+
+        <img src="img/Fiat 500.PNG" alt="Fiat blanco" />
+        <input type="radio" name="Modelo" value="Blanco" />
+        <img src="img/Opel Corsa.PNG" alt="Opel azul marino" />
+        <input type="radio" name="Modelo" value="Azul marino" />
+        <img src="img/Peugeot 3008.PNG" alt="Peugeot marron" />
+        <input type="radio" name="Modelo" value="Marron" />
+        <img src="img/Renault Twingo 3D.PNG" alt="Renault azul" />
+        <input type="radio" name="Modelo" value="azul" />
+
+        <h1>Realizar reserva </h1>
+        <p> Llego la hora de realizar tu reserva.
+            Complete los siguientes campos para
+            realizar la busqueda.
+        </p>
+
+        <form action="inicioCliente.html" method="post">
+            <p>Oficina de recogida:
+                <select name="listaValores" id="listaValores" size="3" multiple="">
+                    <option value="Vitoria-Gasteiz">Vitoria-Gasteiz</option>
+                    <option value="San Sebastian ">San Sebastian</option>
+                    <option value="Bilbao">Bilbao</option>                      
+                </select>  
+            <p>Fecha:<input type="date" name="fecha" id="fecha" />
+            <p>Hora:<input type="time" name="hora" id="hora" />
+            <p>Oficina de entrega:
+                <select name="listaValores" id="listaValores" size="3" multiple="">
+                    <option value="Vitoria-Gasteiz">Vitoria-Gasteiz</option>
+                    <option value="San Sebastian ">San Sebastian</option>
+                    <option value="Bilbao">Bilbao</option>                      
+                </select>  
+            <p>Fecha y hora local:<input type="datetime-local" name="tiempolocal" id="tiempolocal" />    
+        <p><input type="submit" value="Realizar reserva" />
+        </form>
+
+
     </body>
+
+
 </html>
