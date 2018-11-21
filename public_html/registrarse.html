@@ -9,6 +9,8 @@ and open the template in the editor.
         <title>REGISTRO</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="css/registrarse.css">
+        <script src="js/registrarse.js"></script>
     </head>
     <body>
         <form action="loguearse.html" method="post">
@@ -18,11 +20,22 @@ and open the template in the editor.
             <p><label>Correo: <input type="email" name="correo" required=""></label></p>
             <p><label>Contraseña: <input type="password" name="contraseña" value="" maxlength="10" size="10" required="" /></p>
 
-        
+            <!--  FOTOOOOOOOOOOOOOOO -->
+
+            <section id="cajaformulario">
+                <form name="formulario">
+                    <label for="archivos">Archivo: </label>
+                    <input type="file" name="archivos" id="archivos">
+                </form>
+            </section>
+            <section id="cajadatos">
+                <p>Seleccione un archivo</p>
+            </section>
 
 
-        <p><input type="submit" name="btnSubmit" value="Enviar Datos"/>
-            <input type="reset" value="Limpiar Datos"/></p>
+
+            <p><input type="submit" name="btnSubmit" value="Enviar Datos"/>
+                <input type="reset" value="Limpiar Datos"/></p>
         </form>
     </body>
 </html>
