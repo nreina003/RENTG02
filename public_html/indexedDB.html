@@ -1,18 +1,33 @@
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
 <html>
     <head>
-        <title>TODO supply a title</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta charset="UTF-8" />
+        <title>IndexedDB: Local Database with HTML5</title>
         <script src="js/indexedDB.js"></script>
-        <link rel="stylesheet" href="css/indexedDB.css">
     </head>
-    <body>
-        <div>TODO write content</div>
+    <body onload="startDB();">
+        
+        <input type="text" id="name" placeholder="Enter name" />
+    
+        <button type="button" onclick="add();">Save</button>
+        <hr />
+        <div id="elements">
+            <table>
+                <caption>Persons</caption>
+                <thead>
+                    <tr>
+                      
+                        <th>Name</th>
+                        <th> </th>
+                    </tr>
+                </thead>
+                <tbody id="elementsList">
+                    <tr>
+                        <td colspan="3">Not elements to show</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <button type="button" onclick="loadAllByMatricula();">Order by matricula</button>
     </body>
 </html>
