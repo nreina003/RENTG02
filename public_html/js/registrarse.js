@@ -20,7 +20,8 @@ function iniciar(){
     document.formaltapac.addEventListener("invalid", controlar, false);
     document.formaltapac.addEventListener("input", controlar, false);
     document.getElementById("btnSubmit").addEventListener("click",
-    enviar, false);     
+    enviar, false);   
+    validacion();
 }
 
 function controlar(e){
