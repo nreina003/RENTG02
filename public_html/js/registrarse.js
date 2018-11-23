@@ -40,7 +40,7 @@ function validacion(e){
  function enviar(){
      var valido=document.formaltapac.checkValidity();     
      if(valido){
-         addpaciente();
+         addCliente();
          document.formaltapac.submit();
          
      }

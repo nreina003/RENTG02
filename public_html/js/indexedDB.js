@@ -15,11 +15,14 @@ var request = window.indexedDB.open("rentg02", 1);
 
 request.onerror = function (event) {
     console.log("error: ");
+    alert('Error loading database');
+    
 };
 
 request.onsuccess = function (event) {
     db = request.result;
     console.log("success: " + db);
+    alert('Database loaded');
 };
 
 request.onupgradeneeded = function (event) {
@@ -65,11 +68,11 @@ function addCoches() {
 
 }
 function addCliente() {
-    var pemail = document.getElementById('email').value;
-    var pcontraseña = document.getElementById('contraseña').value;
-    var pnombre = document.getElementById('nombre').value;
-    var pdni = document.querySelector('dni').value;
-    var pmovil = document.getElementById('movil').value;
+    var email = document.getElementById('email').value;
+    var contraseña = document.getElementById('contraseña').value;
+    var nombre = document.getElementById('nombre').value;
+    var dni = document.querySelector('dni').value;
+    var movil = document.getElementById('movil').value;
     var request = db.transaction(["cliente"], "readwrite")
             .objectStore("cliente")
             .add({email: pemail, contraseña: pcontraseña, nombre: pnombre, dni: pdni, movil: pmovil});
