@@ -81,34 +81,6 @@ function addReservas() {
     var getPermanent = objectStore.get(numcol);
     getPermanent.onsuccess = function () {
        
-
-        
     };
 
-
-}
-
-function addCita() {
-
-    var pSanitario = document.getElementById('inputdatalistsanitario').value;
-    var pFecha = document.getElementById('fechacita').value;
-    var pHora = document.getElementById('inputdatalisthora').value;
-    var pMin = document.getElementById('inputdatalistmins').value;
-    //var pN = 1;
-
-    var request = db.transaction(["cita"], "readwrite")
-            .objectStore("cita")
-            .add({
-                //n: pN + 1,
-                sanitario: pSanitario,
-                fecha: pFecha,
-                hora: pHora + pMin});
-
-    request.onsuccess = function (event) {
-        alert("Info añadida a la BD correctamente.");
-    };
-
-    request.onerror = function (event) {
-        alert("Error. Los datos ya existen en la base de datos.");
-    };
 }

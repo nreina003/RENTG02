@@ -10,9 +10,10 @@ and open the template in the editor.
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="css/registrarse.css">
-        <script src="js/registrarse.js"></script>
+        <script src="js/indexedDB.js"></script>
+       
     </head>
-    <body>
+    <body >
 
         <header id="cabeceralogo">
             <div>
@@ -38,7 +39,7 @@ and open the template in the editor.
                     <!--  FOTOOOOOOOOOOOOOOO -->
 
                     <section id="cajaformulario">
-                        <form name="formulario" action="loguearse.html" method="post">
+                        <form name="formulario" action="loguearse.html" method="get">
                             <p><label>Nombre: <input type="text"  name="nombre" pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{3,48}" required=""/></label></p>
                             <p><label>DNI: <input type="text" name="dni" maxlength="9" pattern="[0-9]{9}" /></label></p>
                             <p><label>Movil: <input type="text" name="movil" ></label></p>
@@ -53,8 +54,8 @@ and open the template in the editor.
                                 <p>Seleccione un archivo</p>
                             </section>
 
-                            <p><input type="submit" name="btnSubmit" value="Enviar Datos"/>
-                                <input type="reset" value="Limpiar Datos"/></p>
+                            <p><input type="submit" name="btnSubmit" value="Enviar Datos" onclick="enviar()"  id="btnSubmit"/>
+                                <input type="reset" name=" btnLimpiar" value="Limpiar Datos" id="btnLimpiar"/></p>
                         </form>
                     </section>
 

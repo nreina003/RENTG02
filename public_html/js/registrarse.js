@@ -3,29 +3,44 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-var cajadatos;
-function iniciar() {
-    cajadatos = document.getElementById("cajadatos");
-    var archivos = document.getElementById("archivos");
-    archivos.addEventListener("change", procesar);
+window.addEventListener("load", iniciar, false);
+function iniciar(){
+    nombre=document.getElementById("nombre");
+    dni=document.getElementById("dni");
+    movil=document.getElementById("movil");
+    correo=document.getElementById("correo");
+    contrasena=document.getElementById("contraseña");
+    
+    nombre.addEventListener("change", controlar, false);
+    dni.addEventListener("change", controlar, false);
+    movil.addEventListener("change", controlar, false);
+    email.addEventListener("change", controlar, false);
+    contrasena.addEventListener("change", controlar, false);
+    
+    document.formaltapac.addEventListener("invalid", controlar, false);
+    document.formaltapac.addEventListener("input", controlar, false);
+    document.getElementById("btnSubmit").addEventListener("click",
+    enviar, false);     
 }
-function procesar(evento) {
-    var archivos = evento.target.files;
-    cajadatos.innerHTML = "";
 
-    var archivo = archivos[0];
-    if (!archivo.type.match(/image.*/i)) {
-        alert("Insertar una imagen");
-    } else {
-        cajadatos.innerHTML += "Nombre: " + archivo.name + "<br>";
-        cajadatos.innerHTML += "Tamaño: " + archivo.size + " bytes<br>";
-        var lector = new FileReader();
-        lector.addEventListener("load", mostrar);
-        lector.readAsDataURL(archivo);
+function controlar(e){
+    var elemento=e.target;
+    if(elemento.validity.valid){
+        elemento.style.background='#FFFFFF';
+    }else{
+        elemento.style.background='#FFDDDD';
     }
 }
-function mostrar(evento) {
-    var resultado = evento.target.result;
-    cajadatos.innerHTML += '<img src="' + resultado + '">';
-}
-window.addEventListener("load", iniciar);
+function validacion(e){ 
+    var elemento=e.target;
+    elemento.style.background='#FFDDDD';
+    
+ }
+ function enviar(){
+     var valido=document.formaltapac.checkValidity();     
+     if(valido){
+         addpaciente();
+         document.formaltapac.submit();
+         
+     }
+ }
