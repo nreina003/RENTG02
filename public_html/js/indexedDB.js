@@ -8,47 +8,7 @@ window.IDBKeyRange = window.IDBKeyRange || window.webkitIDBKeyRange || window.ms
 if (!window.indexedDB) {
     window.alert("Your browser doesn't support a stable version of IndexedDB.")
 }
-
-
-var db;
-var request = window.indexedDB.open("rentg02", 1);
-
-request.onerror = function (event) {
-    console.log("error: ");
-    alert('Error loading database');
-    
-};
-
-request.onsuccess = function (event) {
-    db = request.result;
-    console.log("success: " + db);
-    alert('Database loaded');
-};
-
-request.onupgradeneeded = function (event) {
-    var db = event.target.result;
-    var objectStore = db.createObjectStore("coches", {keyPath: "matricula"});
-    objectStore.createIndex('by_matricula', 'matricula', {unique: true});
-    objectStore.createIndex('by_marca', 'marca', {unique: false});
-
-    var objectStore = db.createObjectStore("clientes", {keyPath: "dni"});
-    objectStore.createIndex('by_name', 'name', {unique: false});
-    objectStore.createIndex('by_email', 'email', {unique: true});
-    objectStore.createIndex('by_contraseña', 'contraseña', {unique: false});
-    objectStore.createIndex('by_dni', 'dni', {unique: true});
-    objectStore.createIndex('by_movil', 'movil', {unique: true});
-
-    var objectStore = db.createObjectStore("reservas", {keyPath: "id", autoIncrement: true});
-    objectStore.createIndex('by_id', 'id', {unique: true});
-    objectStore.createIndex('by_email', 'email', {unique: true});
-    objectStore.createIndex('by_matricula', 'matricula', {unique: true});
-    objectStore.createIndex('by_fechaInicio', 'fechaInicio', {unique: false});
-    objectStore.createIndex('by_horaInicio', 'horaInicio', {unique: false});
-    objectStore.createIndex('by_fechaFin', 'fechaFin', {unique: false});
-    objectStore.createIndex('by_horaFin', 'horaFin', {unique: false});
-    objectStore.createIndex('by_lugar', 'lugar', {unique: false});
-
-}
+ var dataBase;
 
 function addCoches() {
     var pmatricula = document.getElementById('matricula').value;
@@ -68,21 +28,22 @@ function addCoches() {
 
 }
 function addCliente() {
-    var email = document.getElementById('email').value;
-    var contraseña = document.getElementById('contraseña').value;
-    var nombre = document.getElementById('nombre').value;
-    var dni = document.querySelector('dni').value;
-    var movil = document.getElementById('movil').value;
-    var request = db.transaction(["cliente"], "readwrite")
-            .objectStore("cliente")
-            .add({email: pemail, contraseña: pcontraseña, nombre: pnombre, dni: pdni, movil: pmovil});
-
-    request.onsuccess = function (event) {
-        alert("Info añadida a la BD correctamente.");
+    var active = dataBase.result;
+    var data = active.transaction(["clientes"], "readwrite");
+    var object = data.objectStore("clientes");
+    var request = object.put({
+        nombre : document.querySelector("#nombre").value,
+        email : document.querySelector("#email").value,
+        contraseña  : document.querySelector("#contraseña").value,
+        dni  : document.querySelector("#dni").value,
+        movil  : document.querySelector("#movil").value}
+    );
+    request.onsuccess = function (e) {
+        alert("Info añadida a la BD correctamente");
     };
 
-    request.onerror = function (event) {
-        alert("Error. Los datos ya existen en la base de datos.");
+    request.onerror = function (e) {
+        alert(request.error.name + '\n\n' + request.error.message);
     };
 
 }
@@ -106,59 +67,39 @@ function addReservas() {
 }
 
 
+function startDB() {
+                
+    dataBase = indexedDB.open("rentg02", 1);
+        
+    dataBase.onupgradeneeded = function (e) {
+        var active = dataBase.result;                    
+        var objectStore = active.createObjectStore("coches", {keyPath: "matricula"});
+        objectStore.createIndex('by_matricula', 'matricula', {unique: true});
+        objectStore.createIndex('by_marca', 'marca', {unique: false});
 
-//var indexedDB = window.indexedDB || window.mozIndexedDB || window.webkitIndexedDB || window.msIndexedDB;
-//
-//var dataBase = null;
-//
-//function iniciar() {
-//    //Abre la conexion a la BD o la crea si no lo ha hecho anteriormente
-//    var dataBase = indexedDB.open("rentG02", 1);
-//
-//    dataBase.onupgradeneeded = function (e) {
-//        // The database did not previously exist, so create object stores and indexes.
-//        var db = dataBase.result;
-//        var coches = db.createObjectStore("coches", {keyPath: "matricula"});
-//        var reservas = db.createObjectStore("reservas", {keyPath: "id", autoIncrement: true});
-//        var clientes = db.createObjectStore("clientes", {keyPath: "dni"});
-//
-//
-//        var matriculaIndex = coches.createIndex("by_matricula", "matricula", {unique: true});
-//        var marcaIndex = coches.createIndex("by_marca", "marca");
-//
-//        var idIndex = reservas.createIndex("by_id", "id");
-//        var emailIndex = reservas.createIndex("by_email", "email");
-//        var matriculaIndex = reservas.createIndex("by_matricula", "matricula");
-//        var fechaIniIndex = reservas.createIndex("by_fechaIni", "fechaIni");
-//        var horaIniIndex = reservas.createIndex("by_horaIni", "horaIni");
-//        var fechaFinIndex = reservas.createIndex("by_fechaFin", "fechaFin");
-//        var horaFinIndex = reservas.createIndex("by_horaFin", "horaFin");
-//        var lugarIndex = reservas.createIndex("by_lugar", "lugar");
-//
-//        var emailIndex = clientes.createIndex("by_email", "email");
-//        var matriculaIndex = clientes.createIndex("by_matricula", "matricula");
-//        var nombreIndex = clientes.createIndex("by_nombre", "nombre");
-//        var dniIndex = clientes.createIndex("by_dni", "dni");
-//        var movilIndex = clientes.createIndex("by_movil", "movil");
-//
-//
-//    };
-//
-//    //Carga correcta
-//    dataBase.onsuccess = function (e) {
-//        alert('Database loaded');
-//    };
-//
-//    //Carga fallida
-//    dataBase.onerror = function (e) {
-//        alert('Error loading database');
-//    };
-//}
-//
-//function add() {
-//    var active = dataBase.result;
-//
-//    var data = active.transaction(["clientes"], "readwrite");
-//
-//}
-//
+        var objectStore = active.createObjectStore("clientes", {keyPath: "dni"});
+        objectStore.createIndex('by_name', 'name', {unique: false});
+        objectStore.createIndex('by_email', 'email', {unique: false});
+        objectStore.createIndex('by_contraseña', 'contraseña', {unique: false});
+        objectStore.createIndex('by_movil', 'movil', {unique: false});
+
+        var objectStore = active.createObjectStore("reservas", {keyPath: "id", autoIncrement: true});
+        objectStore.createIndex('by_email', 'email', {unique: true});
+        objectStore.createIndex('by_matricula', 'matricula', {unique: true});
+        objectStore.createIndex('by_fechaInicio', 'fechaInicio', {unique: false});
+        objectStore.createIndex('by_horaInicio', 'horaInicio', {unique: false});
+        objectStore.createIndex('by_fechaFin', 'fechaFin', {unique: false});
+        objectStore.createIndex('by_horaFin', 'horaFin', {unique: false});
+        objectStore.createIndex('by_lugar', 'lugar', {unique: false});
+
+}
+
+    dataBase.onsuccess = function (e) {
+        alert('Database loaded');
+        //loadAll();
+    };
+
+    dataBase.onerror = function (e) {
+        alert('Error loading database');
+    };
+}

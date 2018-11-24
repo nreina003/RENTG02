@@ -17,11 +17,11 @@ function iniciar(){
     email.addEventListener("change", controlar, false);
     contrasena.addEventListener("change", controlar, false);
     
-    document.formaltapac.addEventListener("invalid", controlar, false);
-    document.formaltapac.addEventListener("input", controlar, false);
-    document.getElementById("btnSubmit").addEventListener("click",
-    enviar, false);   
-    validacion();
+    //document.formaltapac.addEventListener("invalid", controlar, false);
+    //document.formaltapac.addEventListener("input", controlar, false);
+    //document.getElementById("btnSubmit").addEventListener("click",
+    //enviar, false);   
+    //validacion();
 }
 
 function controlar(e){
@@ -33,8 +33,8 @@ function controlar(e){
     }
 }
 function validacion(e){ 
-    var elemento=e.target;
-    elemento.style.background='#FFDDDD';
+    //var elemento=e.target;
+    //elemento.style.background='#FFDDDD';
     
  }
  function enviar(){
