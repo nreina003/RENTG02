@@ -1,4 +1,3 @@
-
 window.indexedDB = window.indexedDB || window.mozIndexedDB || window.webkitIndexedDB || window.msIndexedDB;
 
 //prefixes of window.IDB objects
@@ -47,6 +46,35 @@ function addCliente() {
     };
 
 }
+
+function getCliente() {	
+	var email = document.getElementById("miemail").value;	
+	
+	var active = dataBase.result;
+	var data = active.transaction(["clientes"], "readonly");
+	var object = data.objectStore("clientes");
+	var elements = [];
+	
+	object.openCursor().onsuccess = function (e) {
+	
+		var result = e.target.result;
+		if (result === null) {
+			return;
+		}
+		elements.push(result.value);
+		result.continue();
+
+	};
+	data.oncomplete = function () {
+		for (var key in elements) {
+			alert(elements[key].dni);
+		}
+		elements = [];
+	};
+
+}
+
+
 function addReservas() {
     var pId = document.getElementById('id').value;
     var pEmail = document.getElementById('email').value;
@@ -70,16 +98,23 @@ function addReservas() {
 function startDB() {
                 
     dataBase = indexedDB.open("rentg02", 1);
-        
+	var url = window.location.href;
+	var location = url.split("/");
+	var paginaActual = (location.slice(-1)[0] );
+	if (paginaActual = "registrarse.html") {
+		document.getElementById("articulosprincipales").innerHTML += '';
+	} else {
+	}
+	
     dataBase.onupgradeneeded = function (e) {
         var active = dataBase.result;                    
         var objectStore = active.createObjectStore("coches", {keyPath: "matricula"});
         objectStore.createIndex('by_matricula', 'matricula', {unique: true});
         objectStore.createIndex('by_marca', 'marca', {unique: false});
 
-        var objectStore = active.createObjectStore("clientes", {keyPath: "dni"});
+        var objectStore = active.createObjectStore("clientes", {keyPath: "email"});
         objectStore.createIndex('by_name', 'name', {unique: false});
-        objectStore.createIndex('by_email', 'email', {unique: false});
+        objectStore.createIndex('by_dni', 'dni', {unique: false});
         objectStore.createIndex('by_contraseña', 'contraseña', {unique: false});
         objectStore.createIndex('by_movil', 'movil', {unique: false});
 

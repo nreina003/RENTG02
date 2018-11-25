@@ -45,3 +45,6 @@ function validacion(e){
          
      }
  }
+ 
+ function formularioRegistro() {
+ }
