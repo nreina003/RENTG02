@@ -1,21 +1,16 @@
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 window.addEventListener("load", iniciar, false);
 function iniciar(){
     nombre=document.getElementById("nombre");
     dni=document.getElementById("dni");
     movil=document.getElementById("movil");
-    correo=document.getElementById("correo");
-    contrasena=document.getElementById("contraseña");
+    email=document.getElementById("email");
+    contraseña=document.getElementById("contraseña");
     
     nombre.addEventListener("change", controlar, false);
     dni.addEventListener("change", controlar, false);
     movil.addEventListener("change", controlar, false);
     email.addEventListener("change", controlar, false);
-    contrasena.addEventListener("change", controlar, false);
+    contraseña.addEventListener("change", controlar, false);
     
     //document.formaltapac.addEventListener("invalid", controlar, false);
     //document.formaltapac.addEventListener("input", controlar, false);
@@ -44,7 +39,4 @@ function validacion(e){
          document.formaltapac.submit();
          
      }
- }
- 
- function formularioRegistro() {
  }
