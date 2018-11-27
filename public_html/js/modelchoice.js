@@ -8,8 +8,6 @@ window.addEventListener("load", iniciar, false);
 function iniciar() {
     // primero la eleccion del coche 
 
-
-
     //oficina de recogida
 
     //fecha
