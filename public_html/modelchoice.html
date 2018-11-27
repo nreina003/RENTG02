@@ -10,7 +10,7 @@ and open the template in the editor.
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="css/modelchoice.css">
-		<script src="js/indexedDB.js"></script>
+        <script src="js/indexedDB.js"></script>
         <script src="js/registrarse.js"></script>
     </head>
     <body>
@@ -44,16 +44,16 @@ and open the template in the editor.
 
                         <h2>Nuestros vehículos Model Choice</h2>
                     </article>
-<!-- HAY QUE CAMBIAR TODO ESTO, LAS IMAGENES LAS ACEPTA ASI PERO INSERTAR EL COCHE HAY QUE HACERLO DESDE BD-->
+                    <!-- HAY QUE CAMBIAR TODO ESTO, LAS IMAGENES LAS ACEPTA ASI PERO INSERTAR EL COCHE HAY QUE HACERLO DESDE BD-->
 
                     <img src="img/Fiat 500.PNG" alt="Fiat blanco" />
-                    <input type="radio" name="Modelo" value="Blanco" />
+                          <!-- <input type="radio" name="Modelo" value="Blanco" /> --> 
                     <img src="img/Opel Corsa.PNG" alt="Opel azul marino" />
-                    <input type="radio" name="Modelo" value="Azul marino" />
+                            <!-- <input type="radio" name="Modelo" value="Azul marino" />--> 
                     <img src="img/Peugeot 3008.PNG" alt="Peugeot marron" />
-                    <input type="radio" name="Modelo" value="Marron" />
+                             <!--<input type="radio" name="Modelo" value="Marron" />--> 
                     <img src="img/Renault Twingo 3D.PNG" alt="Renault azul" />
-                    <input type="radio" name="Modelo" value="azul" />
+                               <!-- <input type="radio" name="Modelo" value="azul" />--> 
 
                     <article>
                         <h1>Realizar reserva </h1>
@@ -77,7 +77,8 @@ and open the template in the editor.
                                 <option value="San Sebastian ">San Sebastian</option>
                                 <option value="Bilbao">Bilbao</option>                      
                             </select>  
-                        <p>Fecha y hora local:<input type="datetime-local" name="tiempolocal" id="tiempolocal" />    
+                        <p>Fecha:<input type="date" name="fecha" id="fecha" />
+                        <p>Hora:<input type="time" name="hora" id="hora" />  
                         <p><input type="submit" value="Realizar reserva" />
                     </form>
 
