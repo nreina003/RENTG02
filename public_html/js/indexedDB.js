@@ -38,8 +38,20 @@ function addCoches() {
     var data = active.transaction(["coches"], "readwrite");
     var object = data.objectStore("coches");
     var request = object.put({
-        matricula: "1234 QWE",
+        matricula: "2341 QWE",
         marca: "FORD"
+    });
+    var request = object.put({
+        matricula: "3412 ASD",
+        marca: "OPEL"
+    });
+    var request = object.put({
+        matricula: "4123 ZXC",
+        marca: "BMW"
+    });
+    var request = object.put({
+        matricula: "4321 DFG",
+        marca: "AUDI"
     });
     request.onerror = function (e) {
         alert(request.error.matricula + '\n\n' + request.error.message);
@@ -165,6 +177,7 @@ function startDB() {
         alert('Error loading database');
     };
 }
+var usuarioLogeado = null;
 
 function login() {
 
@@ -173,10 +186,9 @@ function login() {
     var object = data.objectStore("clientes");
     var request = object.get(document.querySelector("#email").value);
     request.onsuccess = function (event) {
-        alert(request);
-        alert("request");
+       
         alert(request.result.nombre);
-        alert("asta aqui");
+       
         alert("El nombre del usuario es: " + request.result.nombre);
         if (request.result.contraseña === document.querySelector("#contraseña").value)
         {
@@ -194,4 +206,15 @@ function login() {
             alert("Contraseña erronea");
         }
     };
+    usuarioLogeado = request.result.nombre;
+    alert(usuarioLogeado);
 }
+
+
+var cajadatos;
+function saludo() {
+    
+    alert(usuarioLogeado);
+    var saludar = document.getElementById("saludo");
+    saludar.innerHTML += "HOLA " + usuarioLogeado;
+};
