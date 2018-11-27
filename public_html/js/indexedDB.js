@@ -212,8 +212,7 @@ function login() {
 function saludo() {
     var saludar = document.getElementById("saludo");
     saludar.innerHTML += "HOLA " + sessionStorage.getItem("nomLogeado");
-}
-;
+};
 
 //
 //function mostrarReserva() {
