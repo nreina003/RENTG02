@@ -38,5 +38,5 @@ function enviar() {
     if (valido) {
         addCliente();
         document.formaltapac.submit();
-}
+    }
 }

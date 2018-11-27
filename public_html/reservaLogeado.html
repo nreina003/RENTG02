@@ -12,9 +12,9 @@ and open the template in the editor.
         <link rel="stylesheet" href="css/modelchoice.css">
         <script src="js/indexedDB.js"></script>
         <script src="js/modelchoice.js"></script>
+        <script src="js/reservaLogeado.js"></script>
     </head>
     <body>
-
         <header id="cabeceralogo">
             <div>
                 <a href="index.html"><h1>RENTG02</h1></a>
@@ -23,10 +23,9 @@ and open the template in the editor.
         <nav id="menuprincipal">
             <div>
                 <ul>
-                    <li><a href="loguearse.html">Loguearse</a></li>
-                    <li><a href="registrarse.html">Registrarse</a></li>
-                    <li><a href="modelchoice.html">Model Choice</a></li>
+                    <li><a href="consultarReservas.html">Consultar Reservas</a></li>
                     <li><a href="contacto.html">Contacto</a></li>
+                   
                 </ul>
             </div>
         </nav>
@@ -100,6 +99,7 @@ and open the template in the editor.
                         </p>
                         <input type="submit" value="Realizar reserva" onclick="addReserva()" />
                         <input type="reset" value="Reset" />
+                        <button type="button" id="logoff">Cerrar Sesión</button>
                     </form>
 
                 </section>

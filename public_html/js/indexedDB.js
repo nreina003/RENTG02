@@ -2,13 +2,14 @@ window.indexedDB = window.indexedDB || window.mozIndexedDB || window.webkitIndex
 
 //prefixes of window.IDB objects
 window.IDBTransaction = window.IDBTransaction || window.webkitIDBTransaction || window.msIDBTransaction;
-window.IDBKeyRange = window.IDBKeyRange || window.webkitIDBKeyRange || window.msIDBKeyRange
+window.IDBKeyRange = window.IDBKeyRange || window.webkitIDBKeyRange || window.msIDBKeyRange;
 
 // Se comprueba que tu navegador soporte la version de indexedDB.
 
 if (!window.indexedDB) {
-    window.alert("Your browser doesn't support a stable version of IndexedDB.")
+    window.alert("Your browser doesn't support a stable version of IndexedDB.");
 }
+window.addEventListener("load", startDB);
 var dataBase;
 
 //Función addResponsable creara un responsable predefinido en la BD de IndexedDB.
@@ -28,7 +29,7 @@ function addResponsable() {
         alert(request.error.nombre + '\n\n' + request.error.message);
     };
     data.oncomplete = function (e) {
-        alert('Object successfully added');
+        // alert('Object successfully added');
     };
 }
 
@@ -39,25 +40,25 @@ function addCoches() {
     var object = data.objectStore("coches");
     var request = object.put({
         matricula: "2341 QWE",
-        marca: "FORD"
+        marca: "Fiat 500"
     });
     var request = object.put({
         matricula: "3412 ASD",
-        marca: "OPEL"
+        marca: "Opel Corsa"
     });
     var request = object.put({
         matricula: "4123 ZXC",
-        marca: "BMW"
+        marca: "Peugeot 3008"
     });
     var request = object.put({
         matricula: "4321 DFG",
-        marca: "AUDI"
+        marca: "Renault Twingo 3D"
     });
     request.onerror = function (e) {
         alert(request.error.matricula + '\n\n' + request.error.message);
     };
     data.oncomplete = function (e) {
-        alert('Object successfully added');
+        //alert('Object successfully added');
     };
 }
 
@@ -74,12 +75,37 @@ function addCliente() {
         movil: document.querySelector("#movil").value}
     );
     request.onsuccess = function (e) {
-        alert("Info añadida a la BD correctamente");
+        //alert("Info añadida a la BD correctamente");
     };
     request.onerror = function (e) {
         alert(request.error.nombre + '\n\n' + request.error.message);
     };
 
+}
+
+function addReserva() {
+
+    var active = dataBase.result;
+    alert("addreserva");
+    var data = active.transaction(["reservas"], "readwrite");
+    alert("addreserva");
+    var object = data.objectStore("reservas");
+    alert("addreserva");
+    var request = object.put({
+        email: document.querySelector("#email").value,
+        matricula: document.querySelector("#modelo").value,
+        fechaInicio: document.querySelector("#fechaInicio").value,
+        horaInicio: document.querySelector("#horaInicio").value,
+        fechaFin: document.querySelector("#fechaFin").value,
+        horaFin: document.querySelector("#horaFin").value,
+        lugar: document.querySelector("#lugar").value
+    });
+    request.onsuccess = function (e) {
+        //alert("Info añadida a la BD correctamente");
+    };
+    request.onerror = function (e) {
+        alert(request.error.nombre + '\n\n' + request.error.message);
+    };
 }
 
 //function getCliente() {
@@ -111,39 +137,12 @@ function addCliente() {
 
 
 
-//function addReservas() {
-//    var pId = document.getElementById('id').value;
-//    var pEmail = document.getElementById('email').value;
-//    var pMatricula = document.getElementById('matricula').value;
-//    var pFechaInicio = document.getElementById('fechaInicio').value;
-//    var pHoraInicio = document.getElementById('horaInicio').value;
-//    var pFechaFin = document.getElementById('fechaFin').value;
-//    var pHoraFin = document.getElementById('horaFin').value;
-//    var pLugar = document.getElementById('lugar').value;
-//
-//    var transaction = db.transaction(["medico"]);
-//    var objectStore = transaction.objectStore("medico");
-//    var getPermanent = objectStore.get(numcol);
-//    getPermanent.onsuccess = function () {
-//
-//    };
-//
-//}
-
 
 //La función startDB() inicializa la base de datos creandola y generando el squema, las tablas y los campos dentro de las tablas.
 
 function startDB() {
 
     dataBase = indexedDB.open("rentg02", 1);
-    var url = window.location.href;
-    var location = url.split("/");
-    var paginaActual = (location.slice(-1)[0]);
-    if (paginaActual = "registrarse.html") {
-        document.getElementById("articulosprincipales").innerHTML += '';
-    } else {
-    }
-
     dataBase.onupgradeneeded = function (e) {
         var active = dataBase.result;
         var objectStore = active.createObjectStore("coches", {keyPath: "matricula"});
@@ -163,21 +162,21 @@ function startDB() {
         objectStore.createIndex('by_horaInicio', 'horaInicio', {unique: false});
         objectStore.createIndex('by_fechaFin', 'fechaFin', {unique: false});
         objectStore.createIndex('by_horaFin', 'horaFin', {unique: false});
-        objectStore.createIndex('by_lugar', 'lugar', {unique: false});
+        objectStore.createIndex('by_lugarrec', 'lugar', {unique: false});
+
     };
 
     dataBase.onsuccess = function (e) {
-        alert('Database loaded');
+        //alert('Database loaded');
         addResponsable();
         addCoches();
-        //loadAll();
     };
 
     dataBase.onerror = function (e) {
         alert('Error loading database');
     };
 }
-var usuarioLogeado = null;
+
 
 function login() {
 
@@ -186,13 +185,14 @@ function login() {
     var object = data.objectStore("clientes");
     var request = object.get(document.querySelector("#email").value);
     request.onsuccess = function (event) {
-       
-        alert(request.result.nombre);
-       
+
+
+
         alert("El nombre del usuario es: " + request.result.nombre);
         if (request.result.contraseña === document.querySelector("#contraseña").value)
         {
-            alert(request.result.nombre);
+
+            sessionStorage.setItem("nomLogeado", request.result.nombre);
 
             if (request.result.nombre === "Responsable")
             {
@@ -206,15 +206,32 @@ function login() {
             alert("Contraseña erronea");
         }
     };
-    usuarioLogeado = request.result.nombre;
-    alert(usuarioLogeado);
 }
 
 
-var cajadatos;
 function saludo() {
-    
-    alert(usuarioLogeado);
     var saludar = document.getElementById("saludo");
-    saludar.innerHTML += "HOLA " + usuarioLogeado;
-};
+    saludar.innerHTML += "HOLA " + sessionStorage.getItem("nomLogeado");
+}
+;
+
+//
+//function mostrarReserva() {
+//
+//    var active = dataBase.result;
+//    var data = active.transaction(["reservas"], "readonly");
+//    var object = data.objectStore("reservas");
+//    var request = object.get(document.querySelector("#id").value);
+//    request.onsuccess = function (event) {
+//
+//        if (request.result.email === document.querySelector("#email").value) {
+//
+//            object.openCursor().onsuccess = function (e) {
+//
+//
+//            };
+//        }
+//        alert("El nombre del usuario es: " + request.result.nombre);
+//
+//    };
+//}

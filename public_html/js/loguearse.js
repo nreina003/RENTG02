@@ -8,8 +8,8 @@ function iniciar(){
     
     //document.formaltapac.addEventListener("invalid", controlar, false);
     //document.formaltapac.addEventListener("input", controlar, false);
-    //document.getElementById("btnSubmit").addEventListener("click",
-    //enviar, false);   
+    //boton1 = document.getElementById("btnSubmit").addEventListener("click", enviar, false);
+      
     //validacion();
 }
 
@@ -21,11 +21,6 @@ function controlar(e){
         elemento.style.background='#FFDDDD';
     }
 }
-function validacion(e){ 
-    //var elemento=e.target;
-    //elemento.style.background='#FFDDDD';
-    
- }
  function enviar(){
      var valido=document.formaltapac.checkValidity();     
      if(valido){
