@@ -9,7 +9,8 @@ and open the template in the editor.
         <title>Realizar reserva</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="css/modelchoice.css">
+        <link rel="stylesheet" href="css/index.css">
+        <link rel="icon" type="image/png" href="img/favicon.png" />
         <script src="js/indexedDB.js"></script>
         <script src="js/modelchoice.js"></script>
         <script src="js/reservaLogeado.js"></script>
@@ -24,8 +25,9 @@ and open the template in the editor.
             <div>
                 <ul>
                     <li><a href="consultarReservas.html">Consultar Reservas</a></li>
-                    <li><a href="contacto.html">Contacto</a></li>
-                   
+                    <li><a href="contactoLog.html">Contacto</a></li>
+                    <li><button type="button" id="logoff">Cerrar Sesión</button></li>
+
                 </ul>
             </div>
         </nav>
@@ -61,7 +63,7 @@ and open the template in the editor.
                     <img src="img/Peugeot 3008.PNG" alt="Peugeot marron" />
                     <p> Renault Twingo 3D:Azul</p>
                     <img src="img/Renault Twingo 3D.PNG" alt="Renault azul" />
-                    <form action="inicioCliente.html" method="get">
+                    <form method="post">
                         <p> <select name="modelo" id="modelo" size="4">
                                 <option value="2341 QWE" >Fiat</option>
                                 <option value="3412 ASD" >Opel</option>
@@ -72,7 +74,7 @@ and open the template in the editor.
 
 
 
-                       <p> Oficina de recogida:</p>
+                        <p> Oficina de recogida:</p>
                         <p>
                             Email:<input type="email" name="email" id="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required="" />
                         </p>
@@ -89,7 +91,7 @@ and open the template in the editor.
                         <p>
                             Hora:<input type="time" name="horaInicio" id="horaInicio" />
                         </p>
-                       <p> Oficina de entrega:</p>
+                        <p> Oficina de entrega:</p>
 
                         <p>
                             Fecha:<input type="date" name="fechaFin" id="fechaFin" />
@@ -97,9 +99,10 @@ and open the template in the editor.
                         <p>
                             Hora:<input type="time" name="horaFin" id="horaFin" />  
                         </p>
-                        <input type="submit" value="Realizar reserva" onclick="addReserva()" />
+
+
+                        <button type="button" id="reaReserva">Reralizar Reserva</button>
                         <input type="reset" value="Reset" />
-                        <button type="button" id="logoff">Cerrar Sesión</button>
                     </form>
 
                 </section>

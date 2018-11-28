@@ -6,12 +6,13 @@ and open the template in the editor.
 -->
 <html>
     <head>
-        <title>TODO supply a title</title>
+        <title>Loguearse</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <script src="js/indexedDB.js"></script>
         <script src="js/loguearse.js"></script>
-        <link rel="stylesheet" href="css/loguearse.css">
+        <link rel="icon" type="image/png" href="img/favicon.png" />
+       <link rel="stylesheet" href="css/index.css">
     </head>
     <body>
         <header id="cabeceralogo">
@@ -34,13 +35,12 @@ and open the template in the editor.
                 <section id="articulosprincipales">
                     
                     <!-- mirar porque en el form no admite post arreglarlo -->
-                    <form method="get">
+                    <form method="post">
                         <p>Email:<input type="email" name="email" id="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required="" />
                         <p>Contraseña:<input type="password" name="contraseña" id="contraseña" maxlength="10" size="10" required="" />
                             
                          
-                            
-                           <input type="submit" value="Submit" onclick="login();"/>
+                            <button type="button" id="login1">Login</button>
                             <input type="reset" value="Reset">
                     </form>
 

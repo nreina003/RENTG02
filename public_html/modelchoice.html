@@ -9,7 +9,8 @@ and open the template in the editor.
         <title>Realizar reserva</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="css/modelchoice.css">
+        <link rel="stylesheet" href="css/index.css">
+        <link rel="icon" type="image/png" href="img/favicon.png" />
         <script src="js/indexedDB.js"></script>
         <script src="js/modelchoice.js"></script>
     </head>
@@ -62,8 +63,8 @@ and open the template in the editor.
                     <img src="img/Peugeot 3008.PNG" alt="Peugeot marron" />
                     <p> Renault Twingo 3D:Azul</p>
                     <img src="img/Renault Twingo 3D.PNG" alt="Renault azul" />
-                    <form action="inicioCliente.html" method="get">
-                        <p> <select name="modelo" id="modelo" size="4">
+                    <form method="post">
+                        <p> <select name="modelo" id="modelo" size="1">
                                 <option value="2341 QWE" >Fiat</option>
                                 <option value="3412 ASD" >Opel</option>
                                 <option value="4123 ZXC" >Peugeot</option>   
@@ -78,7 +79,7 @@ and open the template in the editor.
                             Email:<input type="email" name="email" id="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required="" />
                         </p>
                         <p>
-                            <select name="lugar" id="lugar" size="3">
+                            <select name="lugar" id="lugar" size="1">
                                 <option value="Vitoria-Gasteiz" >Vitoria-Gasteiz</option>
                                 <option value="San Sebastian " >San Sebastian</option>
                                 <option value="Bilbao" >Bilbao</option>                      
@@ -98,7 +99,7 @@ and open the template in the editor.
                         <p>
                             Hora:<input type="time" name="horaFin" id="horaFin" />  
                         </p>
-                        <input type="submit" value="Realizar reserva" onclick="addReserva()" />
+                        <button type="button" id="reaReserva1">Reralizar Reserva</button>
                         <input type="reset" value="Reset" />
                     </form>
 

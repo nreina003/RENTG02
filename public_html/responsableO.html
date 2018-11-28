@@ -6,11 +6,14 @@ and open the template in the editor.
 -->
 <html>
     <head>
-        <title>RENTG02</title>
+        <title>Responsable</title>
         <meta charset="utf-8">
         <meta name="description" content="Este es un documento HTML5">
         <meta name="keywords" content="HTML, CSS, JavaScript">
-        <link rel="stylesheet" href="css/inicioCliente.css">
+        <link rel="stylesheet" href="css/index.css">
+        <link rel="icon" type="image/png" href="img/favicon.png" />
+        <script src="js/responsableO.js"></script>
+        <script src="js/indexedDB.js"></script>
     </head>
     <body>
         <header id="cabeceralogo">
@@ -21,10 +24,9 @@ and open the template in the editor.
         <nav id="menuprincipal">
             <div>
                 <ul>
-                    <li><a href="modelchoice.html">Model Choice</a></li>
                     <li><a href="consultarReservas.html">Consultar Reservas</a></li>
-                    <li><a href="contacto.html">Contacto</a></li>
-                    <li><a href="index.html">Cerrar Sesión</a></li>
+                    <li><a href="contactoLog.html">Contacto</a></li>
+                    <li><button type="button" id="logoff">Cerrar Sesión</button></li>
                 </ul>
             </div>
         </nav>
@@ -32,18 +34,24 @@ and open the template in the editor.
             <div>
                 <section id="articulosprincipales">
                     <article>
-                        <h1>RentG</h1>
-                        <p>responsable de oficina</p>
+                        <table>
+                            <tr>
+                                <td>
+                                    <h1>RentG</h1>
+                                </td>
 
-                        <section>
-                            <p>Hola Responsable de Oficina</p>
-                        </section>
-
+                            </tr>
+                            <tr>
+                                <td>
+                                    <section id="saludo" >
+                                    </section>
+                                </td>
+                            </tr>
+                        </table>
 
 
 
                     </article>
-
                 </section>
                 <aside id="infoadicional">
                     <h1>Nuestras oficinas</h1>
@@ -53,6 +61,7 @@ and open the template in the editor.
                 </aside>
                 <div class="recuperar"></div>
             </div>
+
         </main>
         <footer id="pielogo">
             <div>

@@ -1,31 +1,47 @@
-window.addEventListener("load", iniciar, false);
-function iniciar(){
-    email=document.getElementById("email");
-    contraseña=document.getElementById("contraseña");
-    
-    email.addEventListener("input", controlar, false);
-    contraseña.addEventListener("change", controlar, false);
-    
-    //document.formaltapac.addEventListener("invalid", controlar, false);
-    //document.formaltapac.addEventListener("input", controlar, false);
-    //boton1 = document.getElementById("btnSubmit").addEventListener("click", enviar, false);
-      
-    //validacion();
-}
+window.addEventListener("load", cargar, false);
 
-function controlar(e){
-    var elemento=e.target;
-    if(elemento.validity.valid){
-        elemento.style.background='#FFFFFF';
-    }else{
-        elemento.style.background='#FFDDDD';
+function cargar() {
+    iniciar();
+
+}
+function iniciar() {
+    var email = document.getElementById("email").addEventListener("change", controlar, false);
+    var contraseña = document.getElementById("contraseña").addEventListener("change", controlar, false);
+    var l = document.getElementById("login1").addEventListener("click", login);
+
+}
+function controlar(e) {
+    var elemento = e.target;
+    if (elemento.validity.valid) {
+        elemento.style.background = '#FFFFFF';
+    } else {
+        elemento.style.background = '#FFDDDD';
     }
 }
- function enviar(){
-     var valido=document.formaltapac.checkValidity();     
-     if(valido){
-         addCliente();
-         document.formaltapac.submit();
-         
-     }
- }
+function login() {
+
+    var active = dataBase.result;
+    var data = active.transaction(["clientes"], "readonly");
+    var object = data.objectStore("clientes");
+    var request = object.get(document.querySelector("#email").value);
+    request.onsuccess = function (event) {
+        if (request.result.contraseña === document.querySelector("#contraseña").value)
+        {
+
+            sessionStorage.setItem("nomLogeado", request.result.nombre);
+            sessionStorage.setItem("emaLogeado", request.result.email);
+            if (request.result.nombre === "Responsable")
+            {
+                alert("Hola " + request.result.nombre + ", ahora estas logeado.");
+                location.href = "responsableO.html";
+            }else
+            {
+                alert("Hola " + request.result.nombre + ", ahora estas logeado.");
+                location.href = "inicioCliente.html";
+            }
+        } else
+        {
+            alert("Contraseña erronea");
+        }
+    };
+}

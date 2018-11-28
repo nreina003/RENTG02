@@ -1,25 +1,14 @@
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+window.addEventListener("load", cargar, false);
 
-window.addEventListener("load", iniciar, false);
-function iniciar() {
-    // primero la eleccion del coche 
-
-    //oficina de recogida
-
-    //fecha
-
-    //hora
-
-    //oficina de entrega
-
-    //fecha
-
-    //hora
+function cargar(){
+    iniciar();
+    
 }
+
+function iniciar(){
+    var rr=document.getElementById("reaReserva1").addEventListener("click", addReserva);
+}
+
 function controlar(e) {
     var elemento = e.target;
     if (elemento.validity.valid) {
@@ -28,15 +17,25 @@ function controlar(e) {
         elemento.style.background = '#FFDDDD';
     }
 }
-function validacion(e) {
-    //var elemento=e.target;
-    //elemento.style.background='#FFDDDD';
 
-}
-function enviar() {
-    var valido = document.formaltapac.checkValidity();
-    if (valido) {
-        addCliente();
-        document.formaltapac.submit();
-    }
+function addReserva() {
+
+    var active = dataBase.result;
+    var data = active.transaction(["reservas"], "readwrite");
+    var object = data.objectStore("reservas");
+    var request = object.put({
+        email: document.querySelector("#email").value,
+        matricula: document.querySelector("#modelo").value,
+        fechaInicio: document.querySelector("#fechaInicio").value,
+        horaInicio: document.querySelector("#horaInicio").value,
+        fechaFin: document.querySelector("#fechaFin").value,
+        horaFin: document.querySelector("#horaFin").value,
+        lugar: document.querySelector("#lugar").value
+    });
+    request.onsuccess = function (e) {
+        alert("Reserva hecha satisfactoriamente");
+    };
+    request.onerror = function (e) {
+        alert(request.error.nombre + '\n\n' + request.error.message);
+    };
 }

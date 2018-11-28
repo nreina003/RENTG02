@@ -22,8 +22,8 @@ function addResponsable() {
         email: "xabier@gmail.com",
         contraseña: "321",
         dni: "123987654",
-        movil: "654321987"
-
+        movil: "654321987",
+        archivos:"imagen1.png"
     });
     request.onerror = function (e) {
         alert(request.error.nombre + '\n\n' + request.error.message);
@@ -61,83 +61,6 @@ function addCoches() {
         //alert('Object successfully added');
     };
 }
-
-//La función addClientes añadira los datos recogidos del formulario de registrarse.html y la añadira en la BD de IndexedDB.
-function addCliente() {
-    var active = dataBase.result;
-    var data = active.transaction(["clientes"], "readwrite");
-    var object = data.objectStore("clientes");
-    var request = object.put({
-        nombre: document.querySelector("#nombre").value,
-        email: document.querySelector("#email").value,
-        contraseña: document.querySelector("#contraseña").value,
-        dni: document.querySelector("#dni").value,
-        movil: document.querySelector("#movil").value}
-    );
-    request.onsuccess = function (e) {
-        //alert("Info añadida a la BD correctamente");
-    };
-    request.onerror = function (e) {
-        alert(request.error.nombre + '\n\n' + request.error.message);
-    };
-
-}
-
-function addReserva() {
-
-    var active = dataBase.result;
-    alert("addreserva");
-    var data = active.transaction(["reservas"], "readwrite");
-    alert("addreserva");
-    var object = data.objectStore("reservas");
-    alert("addreserva");
-    var request = object.put({
-        email: document.querySelector("#email").value,
-        matricula: document.querySelector("#modelo").value,
-        fechaInicio: document.querySelector("#fechaInicio").value,
-        horaInicio: document.querySelector("#horaInicio").value,
-        fechaFin: document.querySelector("#fechaFin").value,
-        horaFin: document.querySelector("#horaFin").value,
-        lugar: document.querySelector("#lugar").value
-    });
-    request.onsuccess = function (e) {
-        //alert("Info añadida a la BD correctamente");
-    };
-    request.onerror = function (e) {
-        alert(request.error.nombre + '\n\n' + request.error.message);
-    };
-}
-
-//function getCliente() {
-//    var email = document.getElementById("email").value;
-//
-//    var active = dataBase.result;
-//    var data = active.transaction(["clientes"], "readonly");
-//    var object = data.objectStore("clientes");
-//    var elements = [];
-//
-//    object.openCursor().onsuccess = function (e) {
-//
-//        var result = e.target.result;
-//        if (result === null) {
-//            return;
-//        }
-//        elements.push(result.value);
-//        result.continue();
-//
-//    };
-//    data.oncomplete = function () {
-//        for (var key in elements) {
-//            alert(elements[key].dni);
-//        }
-//        elements = [];
-//    };
-//
-//}
-
-
-
-
 //La función startDB() inicializa la base de datos creandola y generando el squema, las tablas y los campos dentro de las tablas.
 
 function startDB() {
@@ -154,6 +77,7 @@ function startDB() {
         objectStore.createIndex('by_dni', 'dni', {unique: false});
         objectStore.createIndex('by_contraseña', 'contraseña', {unique: false});
         objectStore.createIndex('by_movil', 'movil', {unique: false});
+        objectStore.createIndex('by_archivos', 'archivos', {unique: false});
 
         var objectStore = active.createObjectStore("reservas", {keyPath: "id", autoIncrement: true});
         objectStore.createIndex('by_email', 'email', {unique: true});
@@ -178,59 +102,56 @@ function startDB() {
 }
 
 
-function login() {
 
-    var active = dataBase.result;
-    var data = active.transaction(["clientes"], "readonly");
-    var object = data.objectStore("clientes");
-    var request = object.get(document.querySelector("#email").value);
-    request.onsuccess = function (event) {
-
-
-
-        alert("El nombre del usuario es: " + request.result.nombre);
-        if (request.result.contraseña === document.querySelector("#contraseña").value)
-        {
-
-            sessionStorage.setItem("nomLogeado", request.result.nombre);
-
-            if (request.result.nombre === "Responsable")
-            {
-                location.href = "responsableO.html";
-            } else
-            {
-                location.href = "inicioCliente.html";
-            }
-        } else
-        {
-            alert("Contraseña erronea");
-        }
-    };
-}
 
 
 function saludo() {
     var saludar = document.getElementById("saludo");
-    saludar.innerHTML += "HOLA " + sessionStorage.getItem("nomLogeado");
+    saludar.innerHTML += "HOLA, " + sessionStorage.getItem("nomLogeado");
 };
 
-//
-//function mostrarReserva() {
-//
-//    var active = dataBase.result;
-//    var data = active.transaction(["reservas"], "readonly");
-//    var object = data.objectStore("reservas");
-//    var request = object.get(document.querySelector("#id").value);
-//    request.onsuccess = function (event) {
-//
-//        if (request.result.email === document.querySelector("#email").value) {
-//
-//            object.openCursor().onsuccess = function (e) {
-//
-//
-//            };
-//        }
-//        alert("El nombre del usuario es: " + request.result.nombre);
-//
-//    };
-//}
+
+
+function mostrarReserva() {
+
+    var active = dataBase.result;
+    var data = active.transaction(["reservas"], "readonly");
+    var object = data.objectStore("reservas");
+
+    var elements = [];
+    object.openCursor().onsuccess = function (e) {
+        var result = e.target.result;
+        if (result === null) {
+            return;
+        }
+
+        elements.push(result.value);
+        result.continue();
+    };
+    data.oncomplete = function () {
+
+        var outerHTML = '';
+
+        for (var key in elements) {
+
+            outerHTML += '\n\
+                        <tr>\n\
+                            <td>' + elements[key].email + '</td>\n\
+                            <td>' + elements[key].fechaFin + '</td>\n\
+                            <td>' + elements[key].fechaInicio + '</td>\n\
+                            <td>' + elements[key].horaFin + '</td>\n\
+                            <td>' + elements[key].horaInicio + '</td>\n\
+                            <td>' + elements[key].id + '</td>\n\
+                            <td>' + elements[key].lugar + '</td>\n\
+                            <td>' + elements[key].matricula + '</td>\n\
+                            <td>\n\
+                                <button type="button" onclick="load(' + elements[key].id + ')">Details</button>\n\
+                            </td>\n\
+                        </tr>';
+
+        }
+
+        elements = [];
+        document.querySelector("#elementsList").innerHTML = outerHTML;
+    };
+}
