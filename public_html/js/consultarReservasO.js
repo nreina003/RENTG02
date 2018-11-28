@@ -6,8 +6,8 @@ function cargar() {
 
 function iniciar() {
     var cs = document.getElementById("logoff").addEventListener("click", cerrarSesion);
-    var r=document.getElementById("mostrarReservaEmail").addEventListener("click", mostrarReservaEmail);
    
+    var r=document.getElementById("mostrarReserva").addEventListener("click", mostrarReserva);
 }
 
 function cerrarSesion() {
@@ -16,7 +16,7 @@ function cerrarSesion() {
 }
 
 
-function mostrarReservaEmail() {
+function mostrarReserva() {
 
     var active = dataBase.result;
     var data = active.transaction(["reservas"], "readonly");
@@ -37,8 +37,7 @@ function mostrarReservaEmail() {
         var outerHTML = '';
 
         for (var key in elements) {
-            if (elements[key].email === sessionStorage.getItem("emaLogeado")) {
-                outerHTML += '\n\
+            outerHTML += '\n\
                         <tr>\n\
                             <td>' + elements[key].email + '</td>\n\
                             <td>' + elements[key].fechaFin + '</td>\n\
@@ -52,8 +51,6 @@ function mostrarReservaEmail() {
                                 <button type="button" onclick="load(' + elements[key].id + ')">Details</button>\n\
                             </td>\n\
                         </tr>';
-            }
-
 
         }
 
@@ -61,3 +58,4 @@ function mostrarReservaEmail() {
         document.querySelector("#elementsList").innerHTML = outerHTML;
     };
 }
+

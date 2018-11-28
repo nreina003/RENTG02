@@ -9,7 +9,6 @@ function cargar(){
 
 function iniciar(){
     var cs=document.getElementById("logoff").addEventListener("click", cerrarSesion);
-    
 }
 function cerrarSesion(){
     sessionStorage.clear();

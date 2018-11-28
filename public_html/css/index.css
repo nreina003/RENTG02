@@ -171,6 +171,32 @@ figure img {
     background-color: darkgoldenrod;
     display: block;
 }
+#mostrarReservaEmail {
+    background-color: bisque;
+
+    border: 0px solid bisque;
+    font-size: 18px;
+    font-family: Arial, sans-serif;
+    font-weight: 700;
+}
+#mostrarReservaEmail:hover{
+    color: black;
+    background-color: darkgoldenrod;
+    display: block;
+}
+#mostrarReserva{
+    background-color: bisque;
+
+    border: 0px solid bisque;
+    font-size: 18px;
+    font-family: Arial, sans-serif;
+    font-weight: 700;
+}
+#mostrarReserva:hover{
+    color: black;
+    background-color: darkgoldenrod;
+    display: block;
+}
 
 #saludo{
     font-size: 20px;
